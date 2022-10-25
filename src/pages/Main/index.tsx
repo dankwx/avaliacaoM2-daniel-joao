@@ -19,19 +19,19 @@ import Paper from "@mui/material/Paper";
 import { ReactNode, useState } from "react";
 
 export default function Main() {
-  //get data from the api http://localhost:8080/api/ator and put it on the state
+
   const [data, setData] = useState<any[]>([]);
   React.useEffect(() => {
     fetch("http://localhost:8080/api/ator")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
-  // function that will make:'dateFrom' inside data will be like this: 2021-09-01T00:00:00.000Z. split it and get the first part
+
   const getYear = (dateFrom: string) => {
     return dateFrom.split("T")[0];
   };
 
-  // create a object that have name, date
+
   const dataForChart = data.map((item) => {
     return {
       name: item.nome,
@@ -79,7 +79,6 @@ export default function Main() {
             <Line type="monotone" dataKey="date" stroke="#8884d8" />
           </LineChart>
         </div>
-        {/* // create a graph with two values: nome and dateFrom from the api */}
       </div>
     </div>
   );

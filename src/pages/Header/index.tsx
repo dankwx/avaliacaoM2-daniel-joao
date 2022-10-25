@@ -8,6 +8,7 @@ export default function Header() {
       <h1 className={styles.title}>
         Dashboard -&nbsp;<h2>dw_sakila_m1</h2>
       </h1>
+      <h2 className={styles.creditos}>🍂 Daniel Kondlatsch e João Kmiecik</h2>
     </div>
   );
 }
