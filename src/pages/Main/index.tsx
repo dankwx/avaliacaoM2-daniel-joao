@@ -31,69 +31,52 @@ export default function Main() {
     return dateFrom.split("T")[0];
   };
 
+  // create a object that have name, date
+  const dataForChart = data.map((item) => {
+    return {
+      name: item.nome,
+      date: getYear(item.dateFrom),
+    };
+  });
+
   return (
     <div className={styles.container}>
-      <div className={styles.block1}>
-        <h1>Block 1</h1>
-        <div className={styles.block1_chart}>
-          {/* // create a simple table with material ui and put the data on it, data
-          values are from object = 'id', 'version' */}
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Id</TableCell>
-                  <TableCell align="right">Version</TableCell>
-                  <TableCell align="right">Date From</TableCell>
-                  <TableCell align="right">Date To</TableCell>
-                  <TableCell align="right">ID Original</TableCell>
-                  <TableCell align="right">Nome</TableCell>
-                  <TableCell align="right">Primeiro Nome</TableCell>
-                  <TableCell align="right">Sobrenome</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map(
-                  (row: {
-                    ultimoNome: ReactNode;
-                    primeiroNome: ReactNode;
-                    nome: ReactNode;
-                    idOriginal: ReactNode;
-                    dateTo: string;
-                    dateFrom: string;
-                    version: ReactNode;
-                    id: any;
-                  }) => (
-                    <TableRow
-                      key={row.id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.id}
-                      </TableCell>
-                      <TableCell align="right">{row.version}</TableCell>
-                      {/* // dateFrom will be like: 2021-09-01T00:00:00.000+00:00,
-                      so we need to split it and be like: 2021-09-01 */}
-                      <TableCell align="right">
-                        {getYear(row.dateFrom.split("T")[0])}
-                      </TableCell>
-                      <TableCell align="right">
-                        {row.dateTo.split("T")[0]}
-                      </TableCell>
-                      <TableCell align="right">{row.idOriginal}</TableCell>
-                      <TableCell align="right">{row.nome}</TableCell>
-                      <TableCell align="right">{row.primeiroNome}</TableCell>
-                      <TableCell align="right">{row.ultimoNome}</TableCell>
-                    </TableRow>
-                  )
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+      <div className={styles.cards}>
+        <div className={styles.block1}>
+          <h1 className={styles.quantidade}>{data.length}</h1>
+          <p className={styles.descricao}>Atores</p>
+          <div className={styles.block1_chart}></div>
+        </div>
+        <div className={styles.block2}>
+          <h1 className={styles.quantidade}>{data.length}</h1>
+          <p className={styles.descricao}>Clientes</p>
+          <div className={styles.block1_chart}></div>
+        </div>
+        <div className={styles.block3}>
+          <h1 className={styles.quantidade}>{data.length}</h1>
+          <p className={styles.descricao}>Funcionários</p>
+          <div className={styles.block1_chart}></div>
         </div>
       </div>
-      <div className={styles.block2}>
-        <h1>Block 2</h1>
+      <div className={styles.grafico}>
+        {/* // create a graph with two values: nome and dateFrom from the api */}
+        <LineChart
+          width={500}
+          height={300}
+          data={dataForChart}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Line type="monotone" dataKey="date" stroke="#8884d8" />
+        </LineChart>
       </div>
     </div>
   );
