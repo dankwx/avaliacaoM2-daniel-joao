@@ -58,25 +58,28 @@ export default function Main() {
           <div className={styles.block1_chart}></div>
         </div>
       </div>
-      <div className={styles.grafico}>
+      <div className={styles.graficos}>
+        <div className={styles.grafico1}>
+          <h1>Valores por data</h1>
+          <LineChart
+            width={500}
+            height={300}
+            data={dataForChart}
+            margin={{
+              top: 10,
+              right: 0,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="date" stroke="#8884d8" />
+          </LineChart>
+        </div>
         {/* // create a graph with two values: nome and dateFrom from the api */}
-        <LineChart
-          width={500}
-          height={300}
-          data={dataForChart}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Line type="monotone" dataKey="date" stroke="#8884d8" />
-        </LineChart>
       </div>
     </div>
   );
