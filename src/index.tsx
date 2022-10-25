@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Header from "./pages/Header";
+import Header from "./layouts/Header";
 import Main from "./pages/Main";
 
 const root = ReactDOM.createRoot(
