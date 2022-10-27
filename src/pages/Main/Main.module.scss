@@ -1,0 +1,196 @@
+@import "../../base/variables.scss";
+@import "../../base/placeholders.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  background-color: $background-color;
+  .cards {
+    height: 100vh;
+    width: 13%;
+    display: flex;
+    flex-direction: column;
+
+    margin: 1rem;
+  }
+  .block1 {
+    @extend %card;
+    .quantidade {
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .descricao {
+      font-family: $main-font;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .button {
+      @extend %primary-button;
+    }
+    .button:hover {
+      @extend %primary-button-hover;
+    }
+    .button:active {
+      @extend %primary-button-active;
+    }
+  }
+  .block2 {
+    @extend %card;
+    margin-top: 1rem;
+    .quantidade {
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .descricao {
+      font-family: $main-font;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .button {
+      @extend %primary-button;
+    }
+    .button:hover {
+      @extend %primary-button-hover;
+    }
+    .button:active {
+      @extend %primary-button-active;
+    }
+  }
+  .block3 {
+    @extend %card;
+    margin-top: 1rem;
+    .quantidade {
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .descricao {
+      font-family: $main-font;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .button {
+      @extend %primary-button;
+    }
+    .button:hover {
+      @extend %primary-button-hover;
+    }
+    .button:active {
+      @extend %primary-button-active;
+    }
+  }
+  .graficos {
+    margin: 1rem;
+    width: 30%;
+    height: 44%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    .grafico1 {
+      h1 {
+        font-family: $main-font;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-left: 1.8rem;
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      border-radius: 1rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .modal {
+    position: absolute;
+    width: 50%;
+    height: 55%;
+    background-color: rgb(255, 255, 255);
+    //center it on screen
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    animation: modalAppear 0.5s ease-in-out;
+    overflow: scroll;
+    @keyframes modalAppear {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .modal_content {
+      h1 {
+        font-family: $main-font;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-left: 1.8rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-family: $main-font;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-left: 1.8rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+    button {
+      @extend %primary-button;
+      width: 10%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    button:hover {
+      @extend %primary-button-hover;
+    }
+  }
+  .blurBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(153, 148, 148);
+    opacity: 0.5;
+    z-index: 99;
+    pointer-events: none;
+    // make a little animation
+    animation: blurBackground 0.5s ease-in-out;
+    @keyframes blurBackground {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    }
+  }
+}
