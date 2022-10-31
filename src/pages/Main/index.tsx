@@ -1,11 +1,4 @@
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Line, LineChart } from "recharts";
 import styles from "./Main.module.scss";
 import * as React from "react";
 import { useState } from "react";
@@ -16,6 +9,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { JSCharting } from "jscharting-react";
 
 export default function Main() {
   const [atorData, setAtorData] = useState<any[]>([]);
@@ -56,6 +61,33 @@ export default function Main() {
       date: getYear(item.dateFrom),
     };
   });
+
+  // create a new chart using JSCharting, a chart that will show the amount of funcionario per city
+  const config = {
+    type: "column",
+    title: {
+      text: "Funcionarios por cidade",
+    },
+    legend: {
+      visible: false,
+    },
+    defaultSeries: {
+      type: "column",
+      tooltip: "%v funcionarios",
+    },
+    series: [
+      {
+        name: "Funcionarios",
+        points: [
+          { name: "São Paulo", y: 10 },
+          { name: "Rio de Janeiro", y: 5 },
+          { name: "Belo Horizonte", y: 3 },
+          { name: "Curitiba", y: 2 },
+          { name: "Porto Alegre", y: 1 },
+        ],
+      },
+    ],
+  };
 
   const [modalAtorActive, setModalAtorActive] = useState(false);
   const [modalClienteActive, setModalClienteActive] = useState(false);
@@ -177,6 +209,73 @@ export default function Main() {
           </div>
         </div>
       )}
+      {modalFuncionarioActive && <div className={styles.blurBackground}></div>}
+      {modalFuncionarioActive && (
+        <div className={styles.modal}>
+          <div className={styles.modal_content}>
+            <h1>Dados tabela funcionarios</h1>
+            <TableContainer component={Paper}>
+              <Table
+                sx={{
+                  // backgroundColor: "black",
+                  minWidth: 650,
+                }}
+                aria-label="simple table"
+              >
+                <TableHead
+                // sx={{ backgroundColor: "rgb(138, 150, 153)" }}
+                >
+                  <TableRow>
+                    <TableCell>id</TableCell>
+                    <TableCell align="right">version</TableCell>
+                    <TableCell align="right">dateFrom</TableCell>
+                    <TableCell align="right">dateTo</TableCell>
+                    <TableCell align="right">idOriginal</TableCell>
+                    <TableCell align="right">nome</TableCell>
+                    <TableCell align="right">bairro</TableCell>
+                    <TableCell align="right">cidade</TableCell>
+                    <TableCell align="right">pais</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {funcionarioData.map((row) => (
+                    <TableRow
+                      key={row.id}
+                      sx={{
+                        "&:nth-of-type(odd)": {
+                          backgroundColor: (theme) =>
+                            theme.palette.action.hover,
+                        },
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.id}
+                      </TableCell>
+                      <TableCell align="right">{row.version}</TableCell>
+                      <TableCell align="right">
+                        {row.dateFrom.split("T")[0]}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.dateTo.split("T")[0]}
+                      </TableCell>
+
+                      <TableCell align="right">{row.idOriginal}</TableCell>
+                      <TableCell align="right">{row.nome}</TableCell>
+                      <TableCell align="right">{row.bairro}</TableCell>
+                      <TableCell align="right">{row.cidade}</TableCell>
+                      <TableCell align="right">{row.pais}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <button onClick={() => setModalFuncionarioActive(false)}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
       <div className={styles.cards}>
         <div className={styles.block1}>
           <h1 className={styles.quantidade}>{atorData.length}</h1>
@@ -201,9 +300,14 @@ export default function Main() {
           <div className={styles.block1_chart}></div>
         </div>
         <div className={styles.block3}>
-          <h1 className={styles.quantidade}>{atorData.length}</h1>
+          <h1 className={styles.quantidade}>{funcionarioData.length}</h1>
           <p className={styles.descricao}>Funcionários</p>
-          <button className={styles.button}>Ver dados</button>
+          <button
+            className={styles.button}
+            onClick={() => setModalFuncionarioActive(true)}
+          >
+            Ver dados
+          </button>
           <div className={styles.block1_chart}></div>
         </div>
       </div>
@@ -227,6 +331,9 @@ export default function Main() {
             <Tooltip />
             <Line type="monotone" dataKey="date" stroke="#8884d8" />
           </LineChart>
+        </div>
+        <div className={styles.grafico2}>
+          <h1>Quantidade de filmes por gênero</h1>
         </div>
       </div>
     </div>
