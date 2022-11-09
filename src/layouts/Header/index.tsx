@@ -14,7 +14,7 @@ export default function Header() {
           minute: "2-digit",
         })}
       </h2>
-      <h2 className={styles.creditos}>🍂 Daniel Kondlatsch e João Kmiecik</h2>
+      <h2 className={styles.creditos}>🍇 Daniel Kondlatsch e João Kmiecik</h2>
     </div>
   );
 }

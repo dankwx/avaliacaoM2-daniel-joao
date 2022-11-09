@@ -12,8 +12,8 @@
     width: 13%;
     display: flex;
     flex-direction: column;
-
     margin: 1rem;
+    margin-top: 2.3rem;
   }
   .block1 {
     @extend %card;
@@ -89,19 +89,44 @@
       @extend %primary-button-active;
     }
   }
-  .graficos {
+  .block4 {
+    @extend %card;
+    margin-top: 1rem;
+    .quantidade {
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .descricao {
+      font-family: $main-font;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .button {
+      @extend %primary-button;
+    }
+    .button:hover {
+      @extend %primary-button-hover;
+    }
+    .button:active {
+      @extend %primary-button-active;
+    }
+  }
+  .rightCharts {
     margin: 1rem;
-    width: 30%;
+    width: 40%;
     height: 44%;
     background-color: #ffffff;
     border-radius: 1rem;
-    .grafico1 {
+    padding-right: 1rem;
+    .grafico3 {
       h1 {
         font-family: $main-font;
         font-size: 1.5rem;
         font-weight: 600;
         margin-left: 1.8rem;
-        margin-top: 0rem;
         margin-bottom: 1rem;
       }
       display: flex;
@@ -112,6 +137,76 @@
       width: 100%;
       height: 100%;
     }
+    .grafico4 {
+      margin-top: 1rem;
+      width: fit-content;
+      height: 44%;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      padding-right: 1rem;
+      h1 {
+        font-family: $main-font;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-left: 1.8rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      border-radius: 1rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .graficos {
+    margin: 1rem;
+    width: fit-content;
+    height: 44%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding-right: 1rem;
+    .grafico1 {
+      h1 {
+        font-family: $main-font;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-left: 1.8rem;
+        margin-bottom: 4rem;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+      border-radius: 1rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .grafico2 {
+    margin-top: 1rem;
+    width: fit-content;
+    height: 44%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding-right: 1rem;
+    h1 {
+      font-family: $main-font;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: 1.8rem;
+      margin-top: 0rem;
+      margin-bottom: 4rem;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
   }
   .modal {
     position: absolute;
